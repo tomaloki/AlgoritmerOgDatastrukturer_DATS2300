@@ -83,9 +83,37 @@ public class EksamenSBinTre<T> {
         return antall == 0;
     }
 
+    /**
+     * Metode som skal legge inn ny node i et binærtre
+     * @param verdi er noden som skal inn i treet
+     * @return fullført innlagt verdi
+     */
+
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
-    }
+        //Foreldrenode må ha riktig verdi
+        //Ser på programkode 5.2_3
+
+        Node<T> current = rot; //current starter i roten
+        Node<T> q = null;
+        int cmp = 0;        //hjelpevariabel
+
+        while (current != null) {        //fortsetter til p er ute av treet
+            q = current;        //q er forelder til current
+            cmp = comp.compare(verdi, current.verdi);
+            current = cmp < 0 ? current.venstre : current.høyre;    //flytter current
+        }
+
+        current = new Node<>(verdi);        //oppretter en ny node
+        if (q == null)
+            rot = current;      //rotnoden
+        else if (cmp < 0)
+                q.venstre = current;        //til venstre for q
+            else
+                q.høyre = current;      //til høyre for q
+
+            antall++;
+            return true;        //verdien har blitt plassert i treet
+        }
 
     public boolean fjern(T verdi) {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
