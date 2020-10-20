@@ -105,7 +105,7 @@ public class EksamenSBinTre<T> {
 
         current = new Node<>(verdi, q);        //oppretter en ny node
         if (q == null)
-            rot = current;      //rotnoden
+            rot = current;      //current blir til rotnoden
         else if (cmp < 0)
                 q.venstre = current;        //til venstre for q
             else
@@ -124,7 +124,11 @@ public class EksamenSBinTre<T> {
     }
 
     public int antall(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        //Denne oppgaven har jeg nettopp vært borti i kompendiet!
+        Node<T> current = rot;      //nåværende note er rotnode
+        int antallForekomster = 0;  //tellevariabel for antall ganger verdien blir telt
+
+
     }
 
     public void nullstill() {
