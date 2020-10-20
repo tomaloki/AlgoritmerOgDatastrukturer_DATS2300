@@ -123,11 +123,29 @@ public class EksamenSBinTre<T> {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
+    /**
+     * Metode som skal returnere antall forekomster av en verdi i binærtreet
+     * @param verdi er verdien vi ønsker å telle
+     * @return antallForekomster
+     */
+
     public int antall(T verdi) {
         //Denne oppgaven har jeg nettopp vært borti i kompendiet!
         Node<T> current = rot;      //nåværende note er rotnode
         int antallForekomster = 0;  //tellevariabel for antall ganger verdien blir telt
 
+        while(current != null) {
+            int cmp = comp.compare(verdi, current.verdi);
+            if(cmp < 0)
+                current = current.venstre;
+            else {
+                if (cmp == 0)
+                    antallForekomster++;
+                current = current.høyre;
+            }
+
+        }
+        return antallForekomster;
 
     }
 
