@@ -103,7 +103,7 @@ public class EksamenSBinTre<T> {
             current = cmp < 0 ? current.venstre : current.høyre;    //flytter current
         }
 
-        current = new Node<>(verdi);        //oppretter en ny node
+        current = new Node<>(verdi, q);        //oppretter en ny node
         if (q == null)
             rot = current;      //rotnoden
         else if (cmp < 0)
