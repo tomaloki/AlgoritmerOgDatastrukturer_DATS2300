@@ -14,7 +14,8 @@ Se oblig-tekst for alle krav, og husk spesielt på følgende:
 
 # Beskrivelse av oppgaveløsning (4-8 linjer/setninger per oppgave)
 
-Vi har brukt git til å dokumentere arbeidet vårt. Jeg har 16 commits totalt, og hver logg-melding beskriver det jeg har gjort av endringer.
+Har brukt git til å dokumentere arbeidet. Commiter så fort jeg gjør noe, og så ofte jeg kan, for å vise
+at det har blitt tatt i bruk.
 
 * Oppgave 1: Løste ved å implementere ...
 * Oppgave 2: ...
