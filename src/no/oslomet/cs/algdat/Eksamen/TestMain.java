@@ -27,6 +27,15 @@ public class TestMain {
         System.out.println(tre.antall(5));
         System.out.println(tre.antall(4));
 
+
+        EksamenSBinTre<String> tre2 = new EksamenSBinTre(Comparator.naturalOrder());
+
+        tre2.leggInn("A");
+        tre2.leggInn("B");
+        tre2.toStringPostOrder();
+
+
+
     }
 
 }
