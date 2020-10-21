@@ -32,7 +32,14 @@ public class TestMain {
 
         tre2.leggInn("A");
         tre2.leggInn("B");
-        tre2.toStringPostOrder();
+        tre2.leggInn("C");
+        tre2.leggInn("D");
+        tre2.leggInn("F");
+        System.out.println(tre2.toStringPostOrder());
+
+
+
+
 
 
 
