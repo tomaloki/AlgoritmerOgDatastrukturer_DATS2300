@@ -153,10 +153,24 @@ public class EksamenSBinTre<T> {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
+    /**
+     * Metode som skal returnere første node post orden med p som rot
+     * @param p er roten
+     * @param <T>
+     * @return første node post orden
+     */
+
     private static <T> Node<T> førstePostorden(Node<T> p) {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
+
+    /**
+     * Metode som skal returnere noden som kommet etter p i postorden (over)
+     * @param p er noden som kommer før verdien som returneres
+     * @param <T>
+     * @return p sin neste (hvis p er den siste i postorden, skal metodene returnere null)
+     */
     private static <T> Node<T> nestePostorden(Node<T> p) {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
