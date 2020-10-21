@@ -34,8 +34,10 @@ public class TestMain {
         tre2.leggInn("B");
         tre2.leggInn("C");
         tre2.leggInn("D");
-        tre2.leggInn("F");
+        tre2.leggInn("D");
         System.out.println(tre2.toStringPostOrder());
+
+        tre2.postordenRecursive(System.out::println);
 
 
 
