@@ -163,15 +163,16 @@ public class EksamenSBinTre<T> {
     private static <T> Node<T> førstePostorden(Node<T> p) {
         //Huskeregel for postorden: venstre, høyre, node
         //første noden i postorden er den der det ikke er mulig å gå til venstre eller til høyre
-
-        Node<T> current = p;
         while(true) {
-            if(current.venstre != null) {
-                current = current.venstre;
-            }
-            else if(p.høyre != null) {
-                current = current.høyre;
-            }
+
+        if(p.venstre != null) {
+            p = p.venstre;
+        }
+        else if(p.høyre != null) {
+            p = p.høyre;
+        }
+        else {
+
         }
 
     }
