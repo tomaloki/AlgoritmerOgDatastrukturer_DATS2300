@@ -37,7 +37,7 @@ public class TestMain {
         tre2.leggInn("D");
         System.out.println(tre2.toStringPostOrder());
 
-        tre2.postordenRecursive(System.out::println);
+        tre2.postorden(System.out::println);
 
 
 

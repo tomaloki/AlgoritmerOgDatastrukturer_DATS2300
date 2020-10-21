@@ -206,9 +206,9 @@ public class EksamenSBinTre<T> {
 
     public void postorden(Oppgave<? super T> oppgave) {
 
-        Node<T> p = nestePostorden(rot);
 
-        while(p != null) {       //går til den første i postorden
+        Node<T> p = nestePostorden(rot);
+        while(rot != null) {       //går til den første i postorden
             if(p.venstre != null) {
                 p = p.venstre;
             }
@@ -216,7 +216,6 @@ public class EksamenSBinTre<T> {
                 p = p.høyre;
             }
             else break;
-
         }
         oppgave.utførOppgave(p.verdi);
     }
