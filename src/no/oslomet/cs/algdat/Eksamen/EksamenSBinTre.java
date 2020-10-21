@@ -205,9 +205,20 @@ public class EksamenSBinTre<T> {
 
 
     public void postorden(Oppgave<? super T> oppgave) {
-        if (rot != null) {
-            postordenRecursive(rot, oppgave);
+
+        Node<T> p = nestePostorden(rot);
+
+        while(p != null) {       //går til den første i postorden
+            if(p.venstre != null) {
+                p = p.venstre;
+            }
+            else if(p.høyre != null) {
+                p = p.høyre;
+            }
+            else break;
+
         }
+        oppgave.utførOppgave(p.verdi);
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
