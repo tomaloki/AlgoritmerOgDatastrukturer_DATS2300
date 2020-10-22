@@ -1,10 +1,7 @@
 package no.oslomet.cs.algdat.Eksamen;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class EksamenSBinTre<T> {
     private static final class Node<T>   // en indre nodeklasse
@@ -94,24 +91,33 @@ public class EksamenSBinTre<T> {
         //Foreldrenode må ha riktig verdi
         //Ser på programkode 5.2_3
 
-        Node<T> current = rot; //current starter i roten
+        if (tom()) {
+            rot = new Node<T>(verdi, null);
+        }
+
+        else {
+
+        Node<T> p = rot; //p starter i roten
         Node<T> q = null;
         int cmp = 0;        //hjelpevariabel
 
-        while (current != null) {        //fortsetter til p er ute av treet
-            q = current;        //q er forelder til current
-            cmp = comp.compare(verdi, current.verdi);
-            current = cmp < 0 ? current.venstre : current.høyre;    //flytter current
+        while (p != null) {        //fortsetter til p er ute av treet
+            q = p;        //q er forelder til p
+            cmp = comp.compare(verdi, p.verdi);
+            p = cmp < 0 ? p.venstre : p.høyre;    //flytter p
         }
 
 
-        current = new Node<>(verdi, q);        //oppretter en ny node
-        if (q == null)
-            rot = current;      //current blir til rotnoden
-        else if (cmp < 0) q.venstre = current;        //til venstre for q
-        else q.høyre = current;      //til høyre for q
+        //p er nå null, dvs ute av treet, q er den siste vi passerte
 
-        antall++;
+        p = new Node<>(verdi, q);        //oppretter en ny node
+        if (q == null) rot = p;      //p blir til rotnoden
+        else if (cmp < 0) q.venstre = p;        //til venstre for q
+        else q.høyre = p;      //til høyre for q
+    }
+
+        antall++;           //én verdi mer i treet
+        endringer++;
         return true;        //verdien har blitt plassert i treet
     }
 
@@ -175,17 +181,18 @@ public class EksamenSBinTre<T> {
             if (s != p) {
                 s.venstre = r.høyre;
                 if(r.høyre != null) {
-                    r.høyre.forelder = s;
+                    r.forelder.høyre = s;
                 }
             }
             else {
                 s.høyre = r.høyre;
                 if(r.høyre != null) {
-                    r.høyre.forelder = s;
+                    r.forelder.høyre = s;
                 }
             }
         }
         antall--;       //det er én node mindre i treet
+        endringer ++;
         return true;
     }
 
@@ -236,11 +243,13 @@ public class EksamenSBinTre<T> {
         //første noden i postorden er den der det ikke er mulig å gå til venstre eller til høyre
 
 
-        if (p.venstre != null)  p = p.venstre;
+        while(true) {
+            if (p.venstre != null) p = p.venstre;
 
-        else if (p.høyre != null) p = p.høyre;
+            else if (p.høyre != null) p = p.høyre;
 
-        return p;
+            else return p;
+        }
     }
 
 
@@ -259,8 +268,6 @@ public class EksamenSBinTre<T> {
         else if (p == p.forelder.høyre || p.forelder.høyre == null) return p.forelder;
         else return nestePostorden(p.forelder);
     }
-
-
 
 
 
