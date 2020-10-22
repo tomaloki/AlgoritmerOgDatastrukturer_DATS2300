@@ -266,7 +266,7 @@ public class EksamenSBinTre<T> {
 
         //p er høyrebarn, p sin forelder er neste
         else if (p == p.forelder.høyre || p.forelder.høyre == null) return p.forelder;
-        else return nestePostorden(p.forelder);
+        else return førstePostorden(p.forelder.høyre);
     }
 
 
