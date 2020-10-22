@@ -116,7 +116,9 @@ public class EksamenSBinTre<T> {
         }
 
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if(verdi == null) {
+            return false;
+        }
     }
 
     public int fjernAlle(T verdi) {
@@ -208,7 +210,7 @@ public class EksamenSBinTre<T> {
 
 
         Node<T> p = nestePostorden(rot);
-        while(rot != null) {       //går til den første i postorden
+        while(p != null) {       //går til den første i postorden
             if(p.venstre != null) {
                 p = p.venstre;
             }
@@ -216,6 +218,22 @@ public class EksamenSBinTre<T> {
                 p = p.høyre;
             }
             else break;
+        }
+        oppgave.utførOppgave(p.verdi);
+
+        Node f = nestePostorden(p);
+
+        if(f.høyre == null || p == f.høyre) {
+            p = f;
+
+            while (true) {
+                if (p.venstre != null) {
+                    p = p.venstre;
+                }
+                if (p.høyre != null) {
+                    p = p.høyre;
+                } else break;
+            }
         }
         oppgave.utførOppgave(p.verdi);
     }
