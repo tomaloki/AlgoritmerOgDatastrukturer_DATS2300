@@ -115,9 +115,31 @@ public class EksamenSBinTre<T> {
             return true;        //verdien har blitt plassert i treet
         }
 
+    /**
+     * Metode som skal fjerne en verdi fra et binært søketre
+     * Spesifikt for trær med verdier som forekommer flere ganger
+     * @param verdi er verdien som skal fjernes
+     * @return true (vellykket fjerning)
+     */
+
     public boolean fjern(T verdi) {
         if(verdi == null) {
-            return false;
+            return false;       //treet har ingen nullverdier
+
+            Node<T> current = rot;
+            Node<T> parent = null;      //q skal være forelder til p
+
+            while(current != null) {        //leter etter verdi
+                int cmp = comp.compare(verdi, current.verdi);   //sammenligner
+                if(cmp < 0) {       //går til venstre
+                    parent = current;
+                    current = current.venstre;
+                }
+                else if(cmp > 0) {      //går til høyre
+                    parent = current;
+                    current = current.høyre;
+                }
+                }
         }
     }
 
