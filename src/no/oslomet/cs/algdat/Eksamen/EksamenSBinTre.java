@@ -85,6 +85,7 @@ public class EksamenSBinTre<T> {
 
     /**
      * Metode som skal legge inn ny node i et binærtre
+     *
      * @param verdi er noden som skal inn i treet
      * @return fullført innlagt verdi
      */
@@ -103,44 +104,76 @@ public class EksamenSBinTre<T> {
             current = cmp < 0 ? current.venstre : current.høyre;    //flytter current
         }
 
+
         current = new Node<>(verdi, q);        //oppretter en ny node
         if (q == null)
             rot = current;      //current blir til rotnoden
-        else if (cmp < 0)
-                q.venstre = current;        //til venstre for q
-            else
-                q.høyre = current;      //til høyre for q
+        else if (cmp < 0) q.venstre = current;        //til venstre for q
+        else q.høyre = current;      //til høyre for q
 
-            antall++;
-            return true;        //verdien har blitt plassert i treet
-        }
+        antall++;
+        return true;        //verdien har blitt plassert i treet
+    }
 
     /**
      * Metode som skal fjerne en verdi fra et binært søketre
      * Spesifikt for trær med verdier som forekommer flere ganger
+     *
      * @param verdi er verdien som skal fjernes
      * @return true (vellykket fjerning)
      */
 
     public boolean fjern(T verdi) {
-        if(verdi == null) {
+        if (verdi == null) {
             return false;       //treet har ingen nullverdier
-
-            Node<T> current = rot;
-            Node<T> parent = null;      //q skal være forelder til p
-
-            while(current != null) {        //leter etter verdi
-                int cmp = comp.compare(verdi, current.verdi);   //sammenligner
-                if(cmp < 0) {       //går til venstre
-                    parent = current;
-                    current = current.venstre;
-                }
-                else if(cmp > 0) {      //går til høyre
-                    parent = current;
-                    current = current.høyre;
-                }
-                }
         }
+
+        Node<T> current = rot;
+        Node<T> parent = null;      //q skal være forelder til p
+
+        while (current != null) {        //leter etter verdi
+            int cmp = comp.compare(verdi, current.verdi);   //sammenligner
+            if (cmp < 0) {       //går til venstre
+                parent = current;
+                current = current.venstre;
+            } else if (cmp > 0) {      //går til høyre
+                parent = current;
+                current = current.høyre;
+            } else break;     //den søkte verdien ligger i current
+        }
+
+        if (current == null) {
+            return false;       //finner ikke verdi
+        }
+
+        if (current.venstre == null || current.høyre == null) {  //tilfelle 1) og 2) --> beskrevet i komp
+            Node<T> barn = current.venstre != null ? current.venstre : current.høyre;
+            if (current == rot) {
+                rot = barn;
+            } else if (current == parent.venstre) {
+                parent.venstre = barn;
+            } else {
+                parent.høyre = barn;
+            }
+        } else {      //tilfelle 3
+            Node<T> s = current;
+            Node<T> r = current.høyre;  //finner neste inorden
+
+            while (r.venstre != null) {
+                s = r;         //s er forelder til r
+                r = r.venstre;
+            }
+
+            current.verdi = r.verdi;    //kopierer verdien i r til p
+
+            if (s != current) {
+                s.venstre = r.høyre;
+            } else {
+                s.høyre = r.høyre;
+            }
+        }
+        antall--;       //det er én node mindre i treet
+        return true;
     }
 
     public int fjernAlle(T verdi) {
