@@ -124,52 +124,65 @@ public class EksamenSBinTre<T> {
      */
 
     public boolean fjern(T verdi) {
-        if (verdi == null) {
-            return false;       //treet har ingen nullverdier
-        }
+        if (verdi == null) return false;       //treet har ingen nullverdier
 
-        Node<T> current = rot;
-        Node<T> parent = null;      //q skal være forelder til p
+        Node<T> p = rot;
+        Node<T> q = null;      //q skal være forelder til p
 
-        while (current != null) {        //leter etter verdi
-            int cmp = comp.compare(verdi, current.verdi);   //sammenligner
+        while (p != null) {        //leter etter verdi
+            int cmp = comp.compare(verdi, p.verdi);   //sammenligner
             if (cmp < 0) {       //går til venstre
-                parent = current;
-                current = current.venstre;
-            } else if (cmp > 0) {      //går til høyre
-                parent = current;
-                current = current.høyre;
-            } else break;     //den søkte verdien ligger i current
-        }
-
-        if (current == null) {
-            return false;       //finner ikke verdi
-        }
-
-        if (current.venstre == null || current.høyre == null) {  //tilfelle 1) og 2) --> beskrevet i komp
-            Node<T> barn = current.venstre != null ? current.venstre : current.høyre;
-            if (current == rot) {
-                rot = barn;
-            } else if (current == parent.venstre) {
-                parent.venstre = barn;
-            } else {
-                parent.høyre = barn;
+                q = p;
+                p = p.venstre;
             }
-        } else {      //tilfelle 3
-            Node<T> s = current;
-            Node<T> r = current.høyre;  //finner neste inorden
+            else if (cmp > 0) {      //går til høyre
+                q = p;
+                p = p.høyre;
+            }
+            else break;     //den søkte verdien ligger i current
+        }
+
+        if (p == null) return false;       //finner ikke verdi
+
+        if (p.venstre == null || p.høyre == null) {  //tilfelle 1) og 2) --> beskrevet i komp
+            Node<T> barn = p.venstre != null ? p.venstre : p.høyre;
+            if (p == rot) {
+                rot = barn;
+            } else if (p == q.venstre) {
+                q.venstre = barn;
+                if(barn != null) {
+                    barn.forelder = q;
+                }
+            }
+            else {
+                q.høyre = barn;
+                if(barn != null) {
+                    barn.forelder = q;
+                }
+            }
+        }
+        else {      //tilfelle 3
+            Node<T> s = p;
+            Node<T> r = p.høyre;  //finner neste inorden
 
             while (r.venstre != null) {
                 s = r;         //s er forelder til r
                 r = r.venstre;
             }
 
-            current.verdi = r.verdi;    //kopierer verdien i r til p
+            p.verdi = r.verdi;    //kopierer verdien i r til p
 
-            if (s != current) {
+            if (s != p) {
                 s.venstre = r.høyre;
-            } else {
+                if(r.høyre != null) {
+                    r.høyre.forelder = s;
+                }
+            }
+            else {
                 s.høyre = r.høyre;
+                if(r.høyre != null) {
+                    r.høyre.forelder = s;
+                }
             }
         }
         antall--;       //det er én node mindre i treet
@@ -223,12 +236,10 @@ public class EksamenSBinTre<T> {
         //første noden i postorden er den der det ikke er mulig å gå til venstre eller til høyre
 
 
-        if (p.venstre != null){
-            p = p.venstre;
-        }
-        else if (p.høyre != null) {
-            p = p.høyre;
-        }
+        if (p.venstre != null)  p = p.venstre;
+
+        else if (p.høyre != null) p = p.høyre;
+
         return p;
     }
 
@@ -241,22 +252,14 @@ public class EksamenSBinTre<T> {
      */
     private static <T> Node<T> nestePostorden(Node<T> p) {
 
+        //p har ikke en forelder = p er den siste i postorden
+        if (p.forelder == null) return null;
 
-        //venstre barn finnes
-        if (p.høyre != null) return p.høyre;
+        //p er høyrebarn, p sin forelder er neste
+        else if (p == p.forelder.høyre || p.forelder.høyre == null) return p.forelder;
+        else return nestePostorden(p.forelder);
+    }
 
-
-            Node parent = p.forelder;
-
-            while (parent != null && parent.høyre == p) {
-                parent = parent.forelder;
-                p = p.forelder;
-            }
-            //vi har et høyrebarn som er søsken av p, det er neste postorder
-            if (parent == null) return null;
-
-            return parent.høyre;
-        }
 
 
 
