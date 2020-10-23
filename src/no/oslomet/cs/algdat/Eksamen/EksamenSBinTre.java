@@ -301,15 +301,16 @@ public class EksamenSBinTre<T> {
             } else if (p.høyre != null) {
                 p = p.høyre;
             } else break;
-            oppgave.utførOppgave(p.verdi);
         }
+        oppgave.utførOppgave(p.verdi);
+
+        while (true) {
 
             Node<T> f = nestePostorden(p);
 
             if (f.høyre == null || p == f.høyre) {
                 p = f;
-            }
-            else {
+            } else {
                 p = f.høyre;
 
                 while (true) {              //går til den første i postorden med p som rot
@@ -323,6 +324,7 @@ public class EksamenSBinTre<T> {
             }
             oppgave.utførOppgave(p.verdi);
         }
+    }
 
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
