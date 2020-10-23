@@ -227,8 +227,27 @@ public class EksamenSBinTre<T> {
     }
 
     public void nullstill() {
+        if(!tom()) {
+            int antall = antall();
+            if(antall == 1) {
+                fjern(rot.verdi);
+                endringer++;
+            }
+            else {
+                Node<T> p = rot;
+                while(p.venstre != null) {
+                    p = p.venstre;
+                }
+                T verdi = p.verdi;
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+                for(int i = 0; i < antall; i++) {
+                    verdi = p.verdi;
+                    p = nestePostorden(p);
+                    fjern(verdi);
+                    endringer++;
+                }
+            }
+        }
     }
 
     /**
@@ -272,10 +291,12 @@ public class EksamenSBinTre<T> {
 
 
     public void postorden(Oppgave<? super T> oppgave) {
+        if(rot == null) return;
 
 
-        Node<T> p = nestePostorden(rot);
-        while(p != null) {       //går til den første i postorden
+        Node<T> p = rot;
+
+        while(true) {       //går til den første i postorden
             if(p.venstre != null) {
                 p = p.venstre;
             }
