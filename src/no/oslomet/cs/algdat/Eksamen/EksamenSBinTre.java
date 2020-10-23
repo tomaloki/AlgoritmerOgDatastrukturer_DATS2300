@@ -342,8 +342,18 @@ public class EksamenSBinTre<T> {
     }
 
     public ArrayList<T> serialize() {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if (tom()) return null;
+
+        ArrayList<T> listeMedNoder = new ArrayList<>();
+
+        if(rot == null) {
+            return listeMedNoder;
+        }
+
+        Queue<Node> kø = new LinkedList<Node>();
+        kø.add(rot);
     }
+
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
         throw new UnsupportedOperationException("Ikke kodet ennå!");
