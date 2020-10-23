@@ -305,8 +305,11 @@ public class EksamenSBinTre<T> {
         oppgave.utførOppgave(p.verdi);
 
         while (true) {
+            if(tom()) return;
 
             Node<T> f = nestePostorden(p);
+            if(p.forelder==null) return;
+
 
             if (f.høyre == null || p == f.høyre) {
                 p = f;
