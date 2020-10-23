@@ -236,7 +236,7 @@ public class EksamenSBinTre<T> {
             else {
                 Node<T> p = rot;
                 while(p.venstre != null) {
-                    p = p.venstre;
+                    //p = p.venstre;
                 }
                 T verdi = p.verdi;
 
