@@ -367,7 +367,8 @@ public class EksamenSBinTre<T> {
 
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        EksamenSBinTre<K> nyttBinærTre = new EksamenSBinTre<>(c);
+
 
     }
 } // ObligSBinTre
