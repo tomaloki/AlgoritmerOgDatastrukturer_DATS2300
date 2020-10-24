@@ -337,10 +337,11 @@ public class EksamenSBinTre<T> {
 
     public ArrayList<T> serialize() {
 
-        ArrayList listeMedNoder = new ArrayList<Node<T>>();
+        ArrayList listeMedNoder = new ArrayList<>();
         ArrayDeque<Node<T>> queue = new ArrayDeque<>();    //deque er en grei måte å håndtere stack og køer, god standard datastruktur
 
         //legg til rotnoden
+
         queue.addLast(rot);
 
         while (!queue.isEmpty()) {
@@ -357,7 +358,7 @@ public class EksamenSBinTre<T> {
 
             //3. Skriv ut
             System.out.print(current.verdi + " ");
-            listeMedNoder.add(queue);
+            listeMedNoder.add(current.verdi);
         }
         return listeMedNoder;
 
