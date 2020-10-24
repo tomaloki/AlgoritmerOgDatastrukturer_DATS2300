@@ -337,15 +337,17 @@ public class EksamenSBinTre<T> {
 
     public ArrayList<T> serialize() {
 
-        ArrayList listeMedNoder = new ArrayList();
+        ArrayList listeMedNoder = new ArrayList<Node<T>>();
+        ArrayDeque<Node<T>> queue = new ArrayDeque<>();    //deque er en grei måte å håndtere stack og køer, god standard datastruktur
 
-        ArrayDeque<Node> queue = new ArrayDeque<>();
         //legg til rotnoden
         queue.addLast(rot);
 
         while (!queue.isEmpty()) {
+            //1. tar ut første fra køen
             Node current = queue.removeFirst();
 
+            //2. legg til curren sine to barn til køen
             if (current.venstre != null) {
                 queue.addLast(current.venstre);
             }
@@ -353,45 +355,13 @@ public class EksamenSBinTre<T> {
                 queue.addLast(current.høyre);
             }
 
+            //3. Skriv ut
             System.out.print(current.verdi + " ");
             listeMedNoder.add(queue);
         }
         return listeMedNoder;
 
     }
-
-
-        /*
-
-        ArrayList listeMedNoder = new ArrayList();
-
-        if(rot == null) {
-            return listeMedNoder;
-        }
-
-        Queue<Node> kø = new LinkedList<>();
-        kø.offer(rot);
-
-        while(!kø.isEmpty()) {
-            ArrayList<T> level = new ArrayList<>();
-            int size = kø.size();
-            for (int i = 0; i < size; i++) {
-                Node<T> hode = kø.poll();
-                level.add(hode.verdi);
-                if(hode.venstre != null) {
-                    kø.offer(hode.venstre);
-                }
-                if(hode.høyre != null) {
-                    kø.offer(hode.høyre);
-                }
-            }
-            listeMedNoder.add(level);
-        }
-        return listeMedNoder;
-
-    }
-
-         */
 
 
 

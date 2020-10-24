@@ -29,6 +29,11 @@ public class TestMain {
 
 
         EksamenSBinTre<String> tre2 = new EksamenSBinTre(Comparator.naturalOrder());
+        EksamenSBinTre<Integer> tre3 = new EksamenSBinTre<>(Comparator.naturalOrder());
+        Integer[] c = {4, 7, 2, 9, 4, 10, 8, 7, 4, 6};
+        for(int verdi : c) {
+            tre3.leggInn(verdi);
+        }
 
         tre2.leggInn("A");
         tre2.leggInn("B");
@@ -37,6 +42,8 @@ public class TestMain {
         tre2.leggInn("D");
         System.out.println(tre2.toStringPostOrder());
         tre2.postorden(System.out::println);
+        tre3.serialize();
+
 
 
 
