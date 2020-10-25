@@ -153,7 +153,7 @@ public class EksamenSBinTre<T> {
             } else if (p == q.venstre) {
                 q.venstre = barn;
                 if (barn != null) {
-                    barn.forelder = q;
+                    barn.forelder = q;      //setter inn denne linjen for at forelder ska få riktig verdi
                 }
             } else {
                 q.høyre = barn;
@@ -174,7 +174,7 @@ public class EksamenSBinTre<T> {
 
             if (s != p) {
                 s.venstre = r.høyre;
-                if (r.høyre != null) {
+                if (r.høyre != null) {  //satt inn denne for å igjen forsikre om at forelder får riktig verdi
                     r.forelder.høyre = s;
                 }
             } else {
