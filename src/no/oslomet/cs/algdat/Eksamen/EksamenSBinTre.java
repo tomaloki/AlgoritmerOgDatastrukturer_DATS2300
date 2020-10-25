@@ -200,6 +200,11 @@ public class EksamenSBinTre<T> {
      * @return antallForekomster
      */
 
+    //tar i bruk og tester kode som jeg har skrevet i forbindelse med en oppgave i kompendiet
+    //seksjon 5.2.8, oppgave 3
+
+
+
     public int antall(T verdi) {
         //Denne oppgaven har jeg nettopp vært borti i kompendiet!
         Node<T> current = rot;      //nåværende note er rotnode
