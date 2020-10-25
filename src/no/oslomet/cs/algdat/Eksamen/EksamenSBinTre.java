@@ -190,7 +190,14 @@ public class EksamenSBinTre<T> {
     }
 
     public int fjernAlle(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        //tar i bruk og tester kode som jeg har skrevet i forbindelse med en oppgave i kompendiet
+        //seksjon 5.2.8, oppgave 3
+
+        int verdiAntall = 0;
+        while(fjern(verdi)) {
+            verdiAntall++;
+        }
+        return verdiAntall;
     }
 
     /**
@@ -199,10 +206,6 @@ public class EksamenSBinTre<T> {
      * @param verdi er verdien vi ønsker å telle
      * @return antallForekomster
      */
-
-    //tar i bruk og tester kode som jeg har skrevet i forbindelse med en oppgave i kompendiet
-    //seksjon 5.2.8, oppgave 3
-
 
 
     public int antall(T verdi) {
