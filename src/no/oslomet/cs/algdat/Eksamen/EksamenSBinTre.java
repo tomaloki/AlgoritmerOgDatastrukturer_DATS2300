@@ -141,26 +141,23 @@ public class EksamenSBinTre<T> {
             } else if (cmp > 0) {      //går til høyre
                 q = p;
                 p = p.høyre;
-            } else break;     //den søkte verdien ligger i current
+            } else break;     //den søkte verdien ligger i p
         }
 
         if (p == null) return false;       //finner ikke verdi
 
         if (p.venstre == null || p.høyre == null) {  //tilfelle 1) og 2) --> beskrevet i komp
             Node<T> barn = p.venstre != null ? p.venstre : p.høyre;
-            if (p == rot) {
-                rot = barn;
-            } else if (p == q.venstre) {
+            if (p == rot) rot = barn;
+            else if (p == q.venstre) {
                 q.venstre = barn;
-                if (barn != null) {
-                    barn.forelder = q;      //setter inn denne linjen for at forelder ska få riktig verdi
-                }
+                if (barn != null) barn.forelder = q;      //setter inn denne linjen for at forelder ska få riktig verdi
+
             } else {
                 q.høyre = barn;
-                if (barn != null) {
-                    barn.forelder = q;
+                if (barn != null)barn.forelder = q;
                 }
-            }
+
         } else {      //tilfelle 3
             Node<T> s = p;
             Node<T> r = p.høyre;  //finner neste inorden
@@ -172,14 +169,19 @@ public class EksamenSBinTre<T> {
 
             p.verdi = r.verdi;    //kopierer verdien i r til p
 
+            //satt inn denne for å igjen forsikre om at forelder får riktig verdi
             if (s != p) {
                 s.venstre = r.høyre;
             } else {
                 s.høyre = r.høyre;
             }
-            if (r.høyre != null) {  //satt inn denne for å igjen forsikre om at forelder får riktig verdi
+            r.forelder = s;
+            /*
+            if(r.høyre != null) {
                 r.forelder.høyre = s;
             }
+
+             */
         }
         antall--;       //det er én node mindre i treet
         return true;
@@ -192,6 +194,7 @@ public class EksamenSBinTre<T> {
         int verdiAntall = 0;
         while(fjern(verdi)){
             verdiAntall++;
+            if(tom()) break;
         }
         return verdiAntall;
     }
@@ -234,11 +237,10 @@ public class EksamenSBinTre<T> {
                 while (p.venstre != null) {
                     p = p.venstre;
                 }
-                T verdi;
 
                 for (int i = 0; i < antall; i++) {
                     assert p != null;
-                    verdi = p.verdi;
+                    T verdi = p.verdi;
                     p = nestePostorden(p);
                     fjern(verdi);
                 }

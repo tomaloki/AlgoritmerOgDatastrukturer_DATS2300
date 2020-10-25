@@ -5,6 +5,7 @@ import java.util.Comparator;
 public class TestMain {
     public static void main(String[] args) {
 
+
         //EksamenSBinTre<String> tre = new EksamenSBinTre<>(Comparator.naturalOrder());
         //System.out.println(tre.antall());
 
@@ -19,6 +20,7 @@ public class TestMain {
 
          */
 
+        /*
         Integer[] b = {4, 7, 2, 9, 4, 10, 8, 7, 4, 6};
         for(int verdi : b) {
             tre.leggInn(verdi);
@@ -53,6 +55,8 @@ public class TestMain {
 
         tre2.fjernAlle("D");
 
+         */
+
 
         int[] a = {4, 7, 2, 9, 4, 10, 8, 7, 4, 6, 1};
         EksamenSBinTre<Integer> tre4 = new EksamenSBinTre<>(Comparator.naturalOrder());
@@ -62,9 +66,10 @@ public class TestMain {
 
        // System.out.println("\n"+tre4.toStringPostOrder());
 
-        System.out.println("\n"+tre4.fjernAlle(9));
+        System.out.println("\n"+tre4.fjernAlle(4));
         //tre4.nullstill();
         System.out.println("\n"+tre4.fjernAlle(7));
+        System.out.println("\n"+tre4.fjernAlle(10));
 
 
         tre4.fjern(8);
