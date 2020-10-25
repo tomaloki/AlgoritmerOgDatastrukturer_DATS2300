@@ -127,58 +127,57 @@ public class EksamenSBinTre<T> {
      */
 
     public boolean fjern(T verdi) {
-
-        if (verdi == null) return false;       //treet har ingen nullverdier
-
+        if (verdi == null) return false;     //treet har ingen nullverdier
         Node<T> p = rot;
-        Node<T> q = null;      //q skal være forelder til p
+        Node<T> q = null;       //q er forelder til p
 
-        while (p != null) {        //leter etter verdi
-            int cmp = comp.compare(verdi, p.verdi);   //sammenligner
-            if (cmp < 0) {       //går til venstre
+        while (p != null) {      //leter etter verdi
+            int cmp = comp.compare(verdi, p.verdi);
+            if (cmp < 0) {   //går til venstre
                 q = p;
                 p = p.venstre;
             } else if (cmp > 0) {      //går til høyre
                 q = p;
                 p = p.høyre;
-            } else break;     //den søkte verdien ligger i p
+            } else break;
         }
 
-        if (p == null) return false;       //finner ikke verdi
+        if (p == null) return false;     //finner ikke verdi
 
-        if (p.venstre == null || p.høyre == null) {  //tilfelle 1) og 2) --> beskrevet i komp
+        if (p.venstre == null || p.høyre == null) {
             Node<T> barn = p.venstre != null ? p.venstre : p.høyre;
-            if (p == rot) rot = barn;
-            else if (p == q.venstre) {
+            if (p == rot) {
+                rot = barn;
+            } else if (p == q.venstre) {
                 q.venstre = barn;
-                if (barn != null) barn.forelder = q;      //setter inn denne linjen for at forelder ska få riktig verdi
-
-            } else {
-                q.høyre = barn;
-                if (barn != null)barn.forelder = q;
+                if (barn != null) {
+                    barn.forelder = q;
                 }
+            } else q.høyre = barn;
+                if (barn != null) {
+                    barn.forelder = q;
+            }
+        }
 
-        } else {      //tilfelle 3
+        else {      //tilfelle 3
             Node<T> s = p;
-            Node<T> r = p.høyre;  //finner neste inorden
+            Node<T> r = p.høyre;        //finner neste inorden
 
             while (r.venstre != null) {
-                s = r;         //s er forelder til r
+                s = r;      //s er forelder til r
                 r = r.venstre;
             }
 
-            p.verdi = r.verdi;    //kopierer verdien i r til p
+            p.verdi = r.verdi;      //kopierer verdien i r til p
 
-            if (s != p) {
-                s.venstre = r.høyre;
-            } else {
-                s.høyre = r.høyre;
-            }
-            if(r.høyre != null) r.forelder.høyre = s;
+            if (s != p) s.venstre = r.høyre;
+            else s.høyre = r.høyre;
+            if(r.høyre != null) r.høyre.forelder = s;
         }
-        antall--;       //det er én node mindre i treet
+        antall--;
         return true;
     }
+
 
     public int fjernAlle(T verdi) {
         //tar i bruk og tester kode som jeg har skrevet i forbindelse med en oppgave i kompendiet
