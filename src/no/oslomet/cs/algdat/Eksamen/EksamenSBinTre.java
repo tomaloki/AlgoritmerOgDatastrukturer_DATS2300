@@ -174,14 +174,11 @@ public class EksamenSBinTre<T> {
 
             if (s != p) {
                 s.venstre = r.høyre;
-                if (r.høyre != null) {  //satt inn denne for å igjen forsikre om at forelder får riktig verdi
-                    r.forelder.høyre = s;
-                }
             } else {
                 s.høyre = r.høyre;
-                if (r.høyre != null) {
-                    r.forelder.høyre = s;
-                }
+            }
+            if (r.høyre != null) {  //satt inn denne for å igjen forsikre om at forelder får riktig verdi
+                r.forelder.høyre = s;
             }
         }
         antall--;       //det er én node mindre i treet
@@ -194,7 +191,7 @@ public class EksamenSBinTre<T> {
         //seksjon 5.2.8, oppgave 3
 
         int verdiAntall = 0;
-        while(fjern(verdi)) {
+        while(fjern(verdi)){
             verdiAntall++;
         }
         return verdiAntall;

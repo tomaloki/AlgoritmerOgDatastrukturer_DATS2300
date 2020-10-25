@@ -24,6 +24,7 @@ public class TestMain {
             tre.leggInn(verdi);
         }
         System.out.println(tre.antall());
+        System.out.println(tre.antall());
         System.out.println(tre.antall(5));
         System.out.println(tre.antall(4));
 
@@ -40,9 +41,30 @@ public class TestMain {
         tre2.leggInn("A");
         tre2.leggInn("D");
         tre2.leggInn("D");
+        System.out.println(tre2.antall());
         System.out.println(tre2.toStringPostOrder());
         tre2.postorden(System.out::println);
         tre3.serialize();
+
+        tre2.fjernAlle("D");
+
+
+        int[] a = {4, 7, 2, 9, 4, 10, 8, 7, 4, 6, 1};
+        EksamenSBinTre<Integer> tre4 = new EksamenSBinTre<>(Comparator.naturalOrder());
+        for(int verdi : a) {
+            tre4.leggInn(verdi);
+        }
+
+
+        System.out.println("\n"+tre4.fjernAlle(4));
+
+        tre4.fjernAlle(7);
+        tre4.fjern(8);
+
+        System.out.println(tre4.antall());
+
+        System.out.println(tre4 + " " + tre4.toString());
+
 
 
 
