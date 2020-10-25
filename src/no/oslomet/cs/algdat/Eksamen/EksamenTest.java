@@ -201,8 +201,8 @@ public class EksamenTest {
 
         Integer[] truth = {10, 6, 14, 1, 8, 12, 3, 7, 9, 11, 13, 2, 5, 4};
         assertArrayEquals(data.toArray(), truth);
-        //EksamenSBinTre<Integer> tre2 = EksamenSBinTre.deserialize(data, Comparator.naturalOrder());
-        //assertEquals(tre.toStringPostOrder(), tre2.toStringPostOrder());
+        EksamenSBinTre<Integer> tre2 = EksamenSBinTre.deserialize(data, Comparator.naturalOrder());
+        assertEquals(tre.toStringPostOrder(), tre2.toStringPostOrder());
     } // slutt på Oppgave 5
 
 

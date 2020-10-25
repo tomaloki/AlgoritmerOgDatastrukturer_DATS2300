@@ -367,8 +367,9 @@ public class EksamenSBinTre<T> {
 
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
-        EksamenSBinTre<K> nyttBinærTre = new EksamenSBinTre<>(c);
-
-
+        //Kode fra kompendiet, seksjon 5.2.3 c)
+        EksamenSBinTre<K> nyttBinærTre = new EksamenSBinTre<>(c);   //komparatoren c
+        data.forEach(nyttBinærTre::leggInn);            //bygger opp treet
+        return nyttBinærTre;        //returnerer det nye treet
     }
 } // ObligSBinTre
