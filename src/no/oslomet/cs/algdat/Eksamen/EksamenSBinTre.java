@@ -115,7 +115,6 @@ public class EksamenSBinTre<T> {
         }
 
         antall++;           //én verdi mer i treet
-        endringer++;
         return true;        //verdien har blitt plassert i treet
     }
 
@@ -128,6 +127,7 @@ public class EksamenSBinTre<T> {
      */
 
     public boolean fjern(T verdi) {
+
         if (verdi == null) return false;       //treet har ingen nullverdier
 
         Node<T> p = rot;
@@ -169,19 +169,12 @@ public class EksamenSBinTre<T> {
 
             p.verdi = r.verdi;    //kopierer verdien i r til p
 
-            //satt inn denne for å igjen forsikre om at forelder får riktig verdi
             if (s != p) {
                 s.venstre = r.høyre;
             } else {
                 s.høyre = r.høyre;
             }
-            r.forelder = s;
-            /*
-            if(r.høyre != null) {
-                r.forelder.høyre = s;
-            }
-
-             */
+            if(r.høyre != null) r.forelder.høyre = s;
         }
         antall--;       //det er én node mindre i treet
         return true;
@@ -192,9 +185,9 @@ public class EksamenSBinTre<T> {
         //seksjon 5.2.8, oppgave 3
 
         int verdiAntall = 0;
-        while(fjern(verdi)){
+        while(inneholder(verdi)) {
+            fjern(verdi);
             verdiAntall++;
-            if(tom()) break;
         }
         return verdiAntall;
     }
@@ -237,11 +230,13 @@ public class EksamenSBinTre<T> {
                 while (p.venstre != null) {
                     p = p.venstre;
                 }
-
+                
                 for (int i = 0; i < antall; i++) {
-                    assert p != null;
-                    T verdi = p.verdi;
-                    p = nestePostorden(p);
+                    T verdi = null;
+                    if (p != null) {
+                        verdi = p.verdi;
+                        p = nestePostorden(p);
+                    }
                     fjern(verdi);
                 }
             }

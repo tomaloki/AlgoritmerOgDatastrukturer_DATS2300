@@ -58,7 +58,7 @@ public class TestMain {
          */
 
 
-        int[] a = {4, 7, 2, 9, 4, 10, 8, 7, 4, 6, 1};
+        int[] a = {7, 4, 6, 6, 6, 8, 7, 4, 6, 6};
         EksamenSBinTre<Integer> tre4 = new EksamenSBinTre<>(Comparator.naturalOrder());
         for(int verdi : a) {
             tre4.leggInn(verdi);
@@ -66,15 +66,26 @@ public class TestMain {
 
        // System.out.println("\n"+tre4.toStringPostOrder());
 
-        System.out.println("\n"+tre4.fjernAlle(4));
-        //tre4.nullstill();
         System.out.println("\n"+tre4.fjernAlle(7));
+        //tre4.nullstill();
+        System.out.println("\n"+tre4.fjernAlle(4));
         System.out.println("\n"+tre4.fjernAlle(10));
 
 
         tre4.fjern(8);
 
         System.out.println("Antall:" +tre4.antall());
+        System.out.println(tre4.toStringPostOrder());
+
+        EksamenSBinTre<Integer> tre5 = new EksamenSBinTre(Comparator.naturalOrder());
+        int[] b = {1, 4, 1, 3, 1, 2, 1, 1};
+        for (int verdi : b) tre5.leggInn(verdi);
+
+        System.out.println(tre5.fjernAlle(1));
+        //System.out.println(tre5.fjernAlle(3));
+        System.out.println("Antall: " +tre5.antall());
+        System.out.println(tre5.toStringPostOrder());
+
 
 
 
