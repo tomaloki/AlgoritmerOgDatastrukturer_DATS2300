@@ -182,7 +182,6 @@ public class EksamenSBinTre<T> {
             }
         }
         antall--;       //det er én node mindre i treet
-        endringer++;
         return true;
     }
 
@@ -230,11 +229,10 @@ public class EksamenSBinTre<T> {
             int antall = antall();
             if (antall == 1) {
                 fjern(rot.verdi);
-                endringer++;
             } else {
                 Node<T> p = rot;
                 while (p.venstre != null) {
-                    //p = p.venstre;
+                    p = p.venstre;
                 }
                 T verdi = p.verdi;
 
@@ -242,7 +240,6 @@ public class EksamenSBinTre<T> {
                     verdi = p.verdi;
                     p = nestePostorden(p);
                     fjern(verdi);
-                    endringer++;
                 }
             }
         }
