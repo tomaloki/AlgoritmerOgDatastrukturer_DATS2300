@@ -234,9 +234,10 @@ public class EksamenSBinTre<T> {
                 while (p.venstre != null) {
                     p = p.venstre;
                 }
-                T verdi = p.verdi;
+                T verdi;
 
                 for (int i = 0; i < antall; i++) {
+                    assert p != null;
                     verdi = p.verdi;
                     p = nestePostorden(p);
                     fjern(verdi);

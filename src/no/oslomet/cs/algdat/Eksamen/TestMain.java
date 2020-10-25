@@ -36,15 +36,20 @@ public class TestMain {
             tre3.leggInn(verdi);
         }
 
+        System.out.println("Printer tre3:" +tre3.toStringPostOrder());
+
         tre2.leggInn("A");
         tre2.leggInn("B");
         tre2.leggInn("A");
         tre2.leggInn("D");
         tre2.leggInn("D");
         System.out.println(tre2.antall());
-        System.out.println(tre2.toStringPostOrder());
-        tre2.postorden(System.out::println);
+        //System.out.println("Printer tre2: " +tre2.toStringPostOrder());
+        //tre2.postorden(System.out::println);
+        System.out.println("Serialiserer:");
         tre3.serialize();
+
+        System.out.println();
 
         tre2.fjernAlle("D");
 
@@ -55,15 +60,16 @@ public class TestMain {
             tre4.leggInn(verdi);
         }
 
+       // System.out.println("\n"+tre4.toStringPostOrder());
 
-        System.out.println("\n"+tre4.fjernAlle(4));
+        System.out.println("\n"+tre4.fjernAlle(9));
+        //tre4.nullstill();
+        System.out.println("\n"+tre4.fjernAlle(7));
 
-        tre4.fjernAlle(7);
+
         tre4.fjern(8);
 
-        System.out.println(tre4.antall());
-
-        System.out.println(tre4 + " " + tre4.toString());
+        System.out.println("Antall:" +tre4.antall());
 
 
 
