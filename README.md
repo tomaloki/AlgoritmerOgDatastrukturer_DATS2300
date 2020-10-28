@@ -31,8 +31,13 @@ høyre. Hvis sammenlignet (cmp) == 0 (søkt _verdi_ er lik p.verdi) skal antallF
 settes til p.høyre. Søket fortsetter til alle forekomser av _verdi_ er funnet. 
 
 
-* Oppgave 3:
-
+* Oppgave 3: **Førstepostorden**: Løst ved å se og implementere nesten lik kode som i programkode 5.1.7 h) i kompendiet.
+Koden finner første postorden ved å finne frem til den første noden i treet hvor det ikke er mulig å gå til venstre
+eller høyre. Metoden tar inn noden _p_, og while(true) --> p sin venstre node ikke er null, så er p = p sin venstre node.
+Ellers er p = p sin høyre node. Ellers skal p returneres.
+**nestePostorden**: Tar inn noden _p_, hvis p ikke har forelder skal null returneres (p er da den siste i postorden).
+Ellers, hvis p er sin forelder sitt høyre barn eller sistnevnte er null = p sin forelder returneres. Ellers returneres
+ første postorden av p.forelder. høyre (ved hjelp av metoden **førstePostorden**).
 
 
 * Oppgave 4:

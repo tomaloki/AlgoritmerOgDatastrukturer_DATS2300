@@ -239,17 +239,8 @@ public class EksamenSBinTre<T> {
         }
     }
 
-    /**
-     * Metode som skal returnere første node post orden med p som rot
-     *
-     * @param p   er roten
-     * @param <T>
-     * @return første node post orden
-     */
-
     private static <T> Node<T> førstePostorden(Node<T> p) {
-        //Huskeregel for postorden: venstre, høyre, node
-        //første noden i postorden er den der det ikke er mulig å gå til venstre eller til høyre
+        //Her er det implementert kode fra kompendiet: seksjon 5.1.7, programkode 5.1.7 h)
 
 
         while (true) {
