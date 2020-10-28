@@ -40,7 +40,7 @@ Ellers, hvis p er sin forelder sitt høyre barn eller sistnevnte er null = p sin
  første postorden av p.forelder. høyre (ved hjelp av metoden **førstePostorden**).
 
 
-* Oppgave 4:
+* Oppgave 4: 
 
 
 
