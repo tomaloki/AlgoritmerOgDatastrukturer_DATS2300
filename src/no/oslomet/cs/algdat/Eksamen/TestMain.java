@@ -82,18 +82,8 @@ public class TestMain {
         for (int verdi : b) tre5.leggInn(verdi);
 
 
-        //System.out.println(tre5.fjernAlle(1));
-        //System.out.println(tre5.fjernAlle(3));
+        System.out.println(tre5.fjernAlle(1));
         System.out.println("Antall: " +tre5.antall());
-        System.out.println(tre5.toStringPostOrder());
-        System.out.println(tre5.fjern(1));
-        System.out.println(tre5.fjern(1));
-        System.out.println(tre5.fjern(1));
-        //System.out.println(tre5.fjern(1));
-        //System.out.println(tre5.fjern(1));
-        //System.out.println(tre5.fjern(4));
-        //System.out.println(tre5.fjern(3));
-        System.out.println("Antall: "+tre5.antall());
         System.out.println(tre5.toStringPostOrder());
 
 
