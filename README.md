@@ -21,13 +21,18 @@ at det har blitt tatt i bruk.
 inn. Rotnoden er start, hvis _verdi_ er mindre enn sjekket nodeverdi, går vi til venstre - ellers til høyre. Gjentas
 så lenge det er noder å sjekke, helt til det stopper (befinner oss utenfor treet). Her er det ingen node, og det skal
 der opprettes en ny (_verdi_ er verdien til ny node). Denne noden blir barnet til den sist passerte noden: 
-_venstre barn_ hvis siste sammenligning av noder var mindre enn, ellers _høyre barn_. 
+**venstre barn** hvis siste sammenligning av noder var mindre enn, ellers **høyre barn.** 
 
 
-* Oppgave 2: 
+* Oppgave 2: Løst ved å implementere samme kode og løsning til oppgave 2, seksjon 5.2.6 i kompendiet. Oppretter ny node
+**p** som settes som rot (starter søket her), og en hjelpevariabel antallForekomster (skal telle antall ganger _verdi_ finnes). Så lenge 
+roten ikke er null, skal _verdi_ og **p.verdi** sammenlignes, hvorpå sammenlignet(cmp) < 0 --> gå til venstre, ellers
+høyre. Hvis sammenlignet (cmp) == 0 (søkt _verdi_ er lik p.verdi) skal antallForekomster plusses med 1, og p
+settes til p.høyre. Søket fortsetter til alle forekomser av _verdi_ er funnet. 
 
 
 * Oppgave 3:
+
 
 
 * Oppgave 4:

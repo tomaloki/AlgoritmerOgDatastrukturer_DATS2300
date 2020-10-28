@@ -80,16 +80,10 @@ public class EksamenSBinTre<T> {
         return antall == 0;
     }
 
-    /**
-     * Metode som skal legge inn ny node i et binærtre
-     *
-     * @param verdi er noden som skal inn i treet
-     * @return fullført innlagt verdi
-     */
 
     public boolean leggInn(T verdi) {
-        //Foreldrenode må ha riktig verdi
-        //Ser på programkode 5.2_3
+        //Her har jeg tatt i bruk programkode 5.2.3 a) fra kompendiet, og gjort de endringene som trengs
+        //for å gi forelder-referansen korrekt verdi i hver node.
 
         if (tom()) {
             rot = new Node<T>(verdi, null);
@@ -112,6 +106,7 @@ public class EksamenSBinTre<T> {
             if (q == null) rot = p;      //p blir til rotnoden
             else if (cmp < 0) q.venstre = p;        //til venstre for q
             else q.høyre = p;      //til høyre for q
+            p.forelder = q;        //trenger jeg denne?
         }
 
         antall++;           //én verdi mer i treet
@@ -200,7 +195,9 @@ public class EksamenSBinTre<T> {
 
 
     public int antall(T verdi) {
-        //Denne oppgaven har jeg nettopp vært borti i kompendiet!
+        //I denne oppgaven har jeg tatt i bruk løsning på oppgave 2, tilhørende avsnitt
+        //5.2.6 i kompendiet.
+
         Node<T> current = rot;      //nåværende note er rotnode
         int antallForekomster = 0;  //tellevariabel for antall ganger verdien blir telt
 
