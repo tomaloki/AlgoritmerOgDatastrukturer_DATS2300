@@ -242,7 +242,6 @@ public class EksamenSBinTre<T> {
     private static <T> Node<T> førstePostorden(Node<T> p) {
         //Her er det implementert kode fra kompendiet: seksjon 5.1.7, programkode 5.1.7 h)
 
-
         while (true) {
             if (p.venstre != null) p = p.venstre;
 
@@ -252,14 +251,6 @@ public class EksamenSBinTre<T> {
         }
     }
 
-
-    /**
-     * Metode som skal returnere noden som kommet etter p i postorden (over)
-     *
-     * @param p   er noden som kommer før verdien som returneres
-     * @param <T>
-     * @return p sin neste (hvis p er den siste i postorden, skal metodene returnere null)
-     */
     private static <T> Node<T> nestePostorden(Node<T> p) {
 
         //p har ikke en forelder = p er den siste i postorden
@@ -292,18 +283,20 @@ public class EksamenSBinTre<T> {
             if (p.forelder == null) return;
 
 
-            if (f.høyre == null || p == f.høyre) {
-                p = f;
-            } else {
-                p = f.høyre;
+            if (f != null) {
+                if (f.høyre == null || p == f.høyre) {
+                    p = f;
+                } else {
+                    p = f.høyre;
 
-                while (true) {              //går til den første i postorden med p som rot
-                    if (p.venstre != null) {
-                        p = p.venstre;
+                    while (true) {              //går til den første i postorden med p som rot
+                        if (p.venstre != null) {
+                            p = p.venstre;
+                        }
+                        if (p.høyre != null) {
+                            p = p.høyre;
+                        } else break;
                     }
-                    if (p.høyre != null) {
-                        p = p.høyre;
-                    } else break;
                 }
             }
             oppgave.utførOppgave(p.verdi);
@@ -323,17 +316,18 @@ public class EksamenSBinTre<T> {
     }
 
     public ArrayList<T> serialize() {
+        //Deler av koden er hentet fra undervisningsvideo med André, --> "uke 09 level order"
 
         ArrayList listeMedNoder = new ArrayList<>();
         ArrayDeque<Node<T>> queue = new ArrayDeque<>();    //deque er en grei måte å håndtere stack og køer, god standard datastruktur
 
         //legg til rotnoden
 
-        queue.addLast(rot);
+        queue.addFirst(rot);
 
         while (!queue.isEmpty()) {
             //1. tar ut første fra køen
-            Node current = queue.removeFirst();
+            Node<T> current = queue.removeFirst();
 
             //2. legg til curren sine to barn til køen
             if (current.venstre != null) {
