@@ -44,8 +44,16 @@ Ellers, hvis p er sin forelder sitt høyre barn eller sistnevnte er null = p sin
 
 
 
-* Oppgave 5: 
+* Oppgave 5: Første del av oppgaven (serialize) er løst ved å ta utgangspunkt i og implementere deler av koden som André arbeider med i videoen
+"uke 09 level order". Det blir opprettet en ArrayList, samt en ArrayDeque. Køen er kom, og legger til rot-noden
+først i køen. Implementerer en while-loop som kjører følgende så lenge køen (dequet) ikke er tom:
+1. Tar ut det første elementet i køen
+2. Legger current sine to barn i køen (så lenge disse ikke er _null_)
+3. Verdiene som finnes i køen blir lagt til i ArrayListen (listeMedNoder)
+4. ArrayListen returneres 
 
-
+Koden i deserialize er hentet fra kompendiet, seksjon 5.2.3 som tar for seg oppbyggingen av et tre ved å
+hente én og én verdi fra en annen type datastrukltur, som her er ArrayList. Tar i bruk programkode 5.2.3 c), hvor
+det først blir opprettet en komparator c, deretter bygges treet opp, og treet blir returnert.
 
 * Oppgave 6:
