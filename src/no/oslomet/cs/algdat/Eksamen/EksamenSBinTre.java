@@ -265,41 +265,11 @@ public class EksamenSBinTre<T> {
     public void postorden(Oppgave<? super T> oppgave) {
         if (rot == null) return;
 
-        Node<T> p = rot;
+        Node<T> p = førstePostorden(rot);
 
-        while (true) {       //går til den første i postorden
-            if (p.venstre != null) {
-                p = p.venstre;
-            } else if (p.høyre != null) {
-                p = p.høyre;
-            } else break;
-        }
-        oppgave.utførOppgave(p.verdi);
-
-        while (true) {
-            if (tom()) return;
-
-            Node<T> f = nestePostorden(p);
-            if (p.forelder == null) return;
-
-
-            if (f != null) {
-                if (f.høyre == null || p == f.høyre) {
-                    p = f;
-                } else {
-                    p = f.høyre;
-
-                    while (true) {              //går til den første i postorden med p som rot
-                        if (p.venstre != null) {
-                            p = p.venstre;
-                        }
-                        if (p.høyre != null) {
-                            p = p.høyre;
-                        } else break;
-                    }
-                }
-            }
+        while (p != null) {       //går til den første i postorden
             oppgave.utførOppgave(p.verdi);
+            p = nestePostorden(p);
         }
     }
 
