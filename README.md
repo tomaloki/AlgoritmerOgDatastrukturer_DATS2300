@@ -40,12 +40,12 @@ Ellers, hvis p er sin forelder sitt høyre barn eller sistnevnte er null = p sin
  første postorden av p.forelder. høyre (ved hjelp av metoden **førstePostorden**).
 
 
-* Oppgave 4: Har tatt utgangspunkt i kildekode og informasjon som blir presentert i seksjon 5.1.10 **Traversering uten
-rekursjon**. I første while-løkke (linje 271-278) finner vi første node postorden.
-Deretter opprettes en ny node, f, og settes som nestePostorden(p).
-Hvis f ikke er null --> sjekk om f.høyrebarn er null eller p er f sitt høyrebarn, hvis sant blir p = f - ellers er p f.høyre.
-Neste while-løkke sjekker neste postorden med p som rot.
-Deretter blir verdiene skrevet ut.
+* Oppgave 4: **Metoden postOrden**: Hvis rot = null, er det eneste som returneres. 
+Oppretter en ny node _p_, som er _førstePostorden(rot)_. 
+Så lenge p ikke er null, skal p.verdi skrives ut, og p settes lik _nestePostorden(p)_.
+Løkken løper til p blir null.
+**Metoden postOrdenRecursive**: Venstrebarn ikke er null - metoden kaller seg selv,
+henter venstrebarn. Høyrebarn ikke er null = henter høyrebarnet. Verdiene skrives ut.
 
 postOrdenRecursive er løst ved å ta utgangspunkt i kildekode 5.1.7 a), hvor det blir utført en _oppgave_ (som her er å 
 skrive ut) for hver node som blir besøkt (venstrebarn og høyrebarn).
