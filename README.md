@@ -64,4 +64,15 @@ Koden i deserialize er hentet fra kompendiet, seksjon 5.2.3 som tar for seg oppb
 hente én og én verdi fra en annen type datastrukltur, som her er ArrayList. Tar i bruk programkode 5.2.3 c), hvor
 det først blir opprettet en komparator c, deretter bygges treet opp, og treet blir returnert.
 
-* Oppgave 6:
+* Oppgave 6:**fjern**: Har tatt utgangspunkt i og brukt kode fra kompendiet, programkode 5.2.8 d),
+men lagt inn riktig referanse til foreldre-node. 
+
+**fjernAlle**: Tatt utgangspunkt i kode fra oppgave og løsning i kompendiet, seksjon 5.2.8, oppgave 3.
+Oppretter en hjelpevariebel som skal telle noder av samme verdi.
+While-loop som går så lenge _inneholder(verdi)_,
+da skal verdien fjernes ved hjelp av metoden _fjern()_,
+og hjelpevariabelen verdiAntall plusses på en.
+Løkken løper så lenge verdien finnes.
+
+**nullstill**: Har tatt utgangspunkt i og implementert kode fra oppgave og løsning i kompendiet,
+seksjon 5.1.7 oppgave 8 (modifikasjoner har blitt gjort). 
