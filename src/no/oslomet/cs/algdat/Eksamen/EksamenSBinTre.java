@@ -119,19 +119,19 @@ public class EksamenSBinTre<T> {
         Node<T> q = null;                               //q er forelder til p
 
         while (p != null) {                             //leter etter verdi
-            int cmp = comp.compare(verdi, p.verdi);
+            int cmp = comp.compare(verdi, p.verdi);     //sammenligner
             if (cmp < 0) {                              //går til venstre
                 q = p;
                 p = p.venstre;
             } else if (cmp > 0) {                       //går til høyre
                 q = p;
                 p = p.høyre;
-            } else break;
+            } else break;                               //verdien vi søkte ligger i p
         }
 
         if (p == null) return false;     //finner ikke verdi
 
-        if (p.venstre == null || p.høyre == null) {     //tilfelle 1 og 2
+        if (p.venstre == null || p.høyre == null) {     //p har ingen eller ett barn
             Node<T> barn = p.venstre != null ? p.venstre : p.høyre;
             if (p == rot) {
                 rot = barn;
@@ -144,7 +144,7 @@ public class EksamenSBinTre<T> {
             if (barn != null) {
                 barn.forelder = q;
             }
-        } else {      //tilfelle 3
+        } else {      //tilfelle 3              //p har to barn
             Node<T> s = p;
             Node<T> r = p.høyre;                //finner neste inorden
 

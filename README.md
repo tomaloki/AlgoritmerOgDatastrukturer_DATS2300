@@ -64,23 +64,18 @@ hente én og én verdi fra en annen type datastrukltur, som her er ArrayList. Ta
 det først blir opprettet en komparator c, deretter bygges treet opp, og treet blir returnert.
 
 * Oppgave 6: **fjern**: Har tatt utgangspunkt i og brukt kode fra kompendiet, programkode 5.2.8 d),
-men lagt inn riktig referanse til foreldre-node. 3 tilfeller: p har ingen barn, p har kun ett barn (høyre eller venstre),
-og p har to barn. _Ingen eller ett barn_: hvis verdi er rot, rot = rot.barn. Hvis q.venstre = p, p fjernes ved å sette
-p.venstre = q.venstre. Hvis q.høyre = p, p fjernes ved å sette q.høyre = p.venstre. Samme gjelder for 
-når p har høyrebarn.
-Tilfelle 3: p har to barn --> 
-
-Metoden tar for seg 3 tilfeller: p har ingen barn, p har kun venstre-
-eller høyre-barn eller p har to barn. (Tilfelle 1 og 2 dekkes av samme): hvis verdi er rot, settes rot lik barnet 
-(side som ikke er null). Hvis verdi har forelder q, fjernes verdi ved å sette q sitt barn lik verdi sitt barn.
-
+men lagt inn riktig referanse til foreldre-node. p = rot, q = null(forelder til p). Når p ikke er null, sammenlignes
+søkt verdi med p.verdi, finner ut om vi skal til høyre eller venstre subtre. Finner vi ikke verdi, returneres false.
+p har ingen eller ett barn: forelderen til verdi som skal fjernes blir til verdien som skal fjernes sitt barn sin forelder.
+Eks. p fjernes, q er forelder --> q.høyre/venstre = p.høyre/venstre.
+p har to barn: kan ikke fjerne p, derfor gis p ny verdi. Tar i bruk verdi i node r som kommer etter p inorden, slik at r
+kan fjernes i stedet. r = noden som ligger lengst ned til venstre i høyre subtre til p.
+Betyr at r ikke har et venstre barn og kan fjernes ved å omdirigere referanseverdien.
 
 **fjernAlle**: Tatt utgangspunkt i kode fra oppgave og løsning i kompendiet, seksjon 5.2.8, oppgave 3.
 Oppretter en hjelpevariebel som skal telle noder av samme verdi.
-While-loop som går så lenge _inneholder(verdi)_,
-da skal verdien fjernes ved hjelp av metoden _fjern()_,
-og hjelpevariabelen verdiAntall plusses på en.
-Løkken løper så lenge verdien finnes.
+While-loop som går så lenge _inneholder(verdi)_,da skal verdien fjernes ved hjelp av metoden _fjern()_,og hjelpevariabelen 
+verdiAntall plusses på en. Løkken løper så lenge verdien finnes.
 
 **nullstill**: Har tatt utgangspunkt i og implementert kode fra oppgave og løsning i kompendiet,
 seksjon 5.1.7 oppgave 8 (modifikasjoner har blitt gjort). 
