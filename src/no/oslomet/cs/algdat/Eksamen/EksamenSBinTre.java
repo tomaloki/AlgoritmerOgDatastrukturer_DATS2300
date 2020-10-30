@@ -114,6 +114,9 @@ public class EksamenSBinTre<T> {
     }
 
     public boolean fjern(T verdi) {
+        //Tatt utgangspunkt i kode fra kompendiet: programkode 5.2.8 d), men lagt inn
+        //riktig referanse til foreldre-node.
+
         if (verdi == null) return false;                //treet har ingen nullverdier
         Node<T> p = rot;
         Node<T> q = null;                               //q er forelder til p
@@ -263,6 +266,7 @@ public class EksamenSBinTre<T> {
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
         //Lik oppbygning som førstePostorden-metoden, men med rekursivt kall som skriver ut
+        //Har tatt utgangspunkt i kildekode 5.1.7 a) fra kompendiet
         if (p.venstre != null) postordenRecursive(p.venstre, oppgave);
         if (p.høyre != null) postordenRecursive(p.høyre, oppgave);
         oppgave.utførOppgave(p.verdi);
