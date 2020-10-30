@@ -17,11 +17,11 @@ Se oblig-tekst for alle krav, og husk spesielt på følgende:
 Har brukt git til å dokumentere arbeidet. Commiter så fort jeg gjør noe, og så ofte jeg kan, for å vise
 at det har blitt tatt i bruk.
 
-* Oppgave 1: Løste ved å implementere programkode 5.2.3 a), som utfører metoden leggInn(T verdi). _Verdi_ skal legges
+* Oppgave 1: Løst ved å implementere programkode 5.2.3 a), som utfører metoden leggInn(T verdi). _Verdi_ skal legges
 inn. Rotnoden er start, hvis _verdi_ er mindre enn sjekket nodeverdi, går vi til venstre - ellers til høyre. Gjentas
 så lenge det er noder å sjekke, helt til det stopper (befinner oss utenfor treet). Her er det ingen node, og det skal
 der opprettes en ny (_verdi_ er verdien til ny node). Denne noden blir barnet til den sist passerte noden: 
-**venstre barn** hvis siste sammenligning av noder var mindre enn, ellers **høyre barn.** 
+**venstre barn** hvis siste sammenligning var mindre enn, ellers **høyre barn.** 
 
 
 * Oppgave 2: Løst ved å implementere samme kode og løsning til oppgave 2, seksjon 5.2.6 i kompendiet. Oppretter ny node
@@ -44,28 +44,36 @@ Ellers, hvis p er sin forelder sitt høyre barn eller sistnevnte er null = p sin
 Oppretter en ny node _p_, som er _førstePostorden(rot)_. 
 Så lenge p ikke er null, skal p.verdi skrives ut, og p settes lik _nestePostorden(p)_.
 Løkken løper til p blir null.
-**Metoden postOrdenRecursive**: Venstrebarn ikke er null - metoden kaller seg selv,
+**postOrdenRecursive**: Venstrebarn ikke er null - metoden kaller seg selv,
 henter venstrebarn. Høyrebarn ikke er null = henter høyrebarnet. Verdiene skrives ut.
-
-postOrdenRecursive er løst ved å ta utgangspunkt i kildekode 5.1.7 a), hvor det blir utført en _oppgave_ (som her er å 
+**postOrdenRecursive** er løst ved å ta utgangspunkt i kildekode 5.1.7 a), hvor det blir utført en _oppgave_ (som her er å 
 skrive ut) for hver node som blir besøkt (venstrebarn og høyrebarn).
 
 
 
 * Oppgave 5: Første del av oppgaven (serialize) er løst ved å ta utgangspunkt i og implementere deler av koden som André arbeider med i videoen
-"uke 09 level order". Det blir opprettet en ArrayList, samt en ArrayDeque. Køen er kom, og legger til rot-noden
+"uke 09 level order". Det blir opprettet en ArrayList, samt en ArrayDeque. Køen er tom, og legger til rot-noden
 først i køen. Implementerer en while-loop som kjører følgende så lenge køen (dequet) ikke er tom:
 1. Tar ut det første elementet i køen
 2. Legger current sine to barn i køen (så lenge disse ikke er _null_)
 3. Verdiene som finnes i køen blir lagt til i ArrayListen (listeMedNoder)
 4. ArrayListen returneres 
 
-Koden i deserialize er hentet fra kompendiet, seksjon 5.2.3 som tar for seg oppbyggingen av et tre ved å
+**deserialize**: kode er hentet fra kompendiet, seksjon 5.2.3 som tar for seg oppbyggingen av et tre ved å
 hente én og én verdi fra en annen type datastrukltur, som her er ArrayList. Tar i bruk programkode 5.2.3 c), hvor
 det først blir opprettet en komparator c, deretter bygges treet opp, og treet blir returnert.
 
-* Oppgave 6:**fjern**: Har tatt utgangspunkt i og brukt kode fra kompendiet, programkode 5.2.8 d),
-men lagt inn riktig referanse til foreldre-node. 
+* Oppgave 6: **fjern**: Har tatt utgangspunkt i og brukt kode fra kompendiet, programkode 5.2.8 d),
+men lagt inn riktig referanse til foreldre-node. 3 tilfeller: p har ingen barn, p har kun ett barn (høyre eller venstre),
+og p har to barn. _Ingen eller ett barn_: hvis verdi er rot, rot = rot.barn. Hvis q.venstre = p, p fjernes ved å sette
+p.venstre = q.venstre. Hvis q.høyre = p, p fjernes ved å sette q.høyre = p.venstre. Samme gjelder for 
+når p har høyrebarn.
+Tilfelle 3: p har to barn --> 
+
+Metoden tar for seg 3 tilfeller: p har ingen barn, p har kun venstre-
+eller høyre-barn eller p har to barn. (Tilfelle 1 og 2 dekkes av samme): hvis verdi er rot, settes rot lik barnet 
+(side som ikke er null). Hvis verdi har forelder q, fjernes verdi ved å sette q sitt barn lik verdi sitt barn.
+
 
 **fjernAlle**: Tatt utgangspunkt i kode fra oppgave og løsning i kompendiet, seksjon 5.2.8, oppgave 3.
 Oppretter en hjelpevariebel som skal telle noder av samme verdi.
