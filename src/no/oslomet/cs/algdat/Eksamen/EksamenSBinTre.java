@@ -113,14 +113,6 @@ public class EksamenSBinTre<T> {
         return true;        //verdien har blitt plassert i treet
     }
 
-    /**
-     * Metode som skal fjerne en verdi fra et binært søketre
-     * Spesifikt for trær med verdier som forekommer flere ganger
-     *
-     * @param verdi er verdien som skal fjernes
-     * @return true (vellykket fjerning)
-     */
-
     public boolean fjern(T verdi) {
         if (verdi == null) return false;     //treet har ingen nullverdier
         Node<T> p = rot;
@@ -186,14 +178,6 @@ public class EksamenSBinTre<T> {
         return verdiAntall;
     }
 
-    /**
-     * Metode som skal returnere antall forekomster av en verdi i binærtreet
-     *
-     * @param verdi er verdien vi ønsker å telle
-     * @return antallForekomster
-     */
-
-
     public int antall(T verdi) {
         //I denne oppgaven har jeg tatt i bruk løsning på oppgave 2, tilhørende avsnitt
         //5.2.6 i kompendiet.
@@ -217,9 +201,9 @@ public class EksamenSBinTre<T> {
     }
 
     public void nullstill() {
-        if (!tom()) {
+        if (!tom()) {                       //så lenge treet ikke er tomt
             int antall = antall();
-            if (antall == 1) {
+            if (antall == 1) {              //bare én node (rotnode) eksisterer
                 fjern(rot.verdi);
             } else {
                 Node<T> p = rot;
@@ -241,12 +225,11 @@ public class EksamenSBinTre<T> {
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
         //Her er det implementert kode fra kompendiet: seksjon 5.1.7, programkode 5.1.7 h)
+        //Første node i postorden = noden hvor man ikke kan gå til venstre eller høyre
 
-        while (true) {
+        while (true) {                              //søker etter bladnoden som ligger lengst til venstre i treet
             if (p.venstre != null) p = p.venstre;
-
             else if (p.høyre != null) p = p.høyre;
-
             else return p;
         }
     }
@@ -256,8 +239,10 @@ public class EksamenSBinTre<T> {
         //p har ikke en forelder = p er den siste i postorden
         if (p.forelder == null) return null;
 
-            //p er høyrebarn, p sin forelder er neste
+        //p er høyrebarn til sin forelder, p sin forelder er neste
         else if (p == p.forelder.høyre || p.forelder.høyre == null) return p.forelder;
+
+        //p er venstrebarn: returner førstPostorden av p sin forelder sitt høyre barn
         else return førstePostorden(p.forelder.høyre);
     }
 
@@ -267,7 +252,7 @@ public class EksamenSBinTre<T> {
 
         Node<T> p = førstePostorden(rot);
 
-        while (p != null) {       //går til den første i postorden
+        while (p != null) {                 //går til den første i postorden
             oppgave.utførOppgave(p.verdi);
             p = nestePostorden(p);
         }
@@ -299,7 +284,7 @@ public class EksamenSBinTre<T> {
             //1. tar ut første fra køen
             Node<T> current = queue.removeFirst();
 
-            //2. legg til curren sine to barn til køen
+            //2. legg til current sine to barn til køen
             if (current.venstre != null) {
                 queue.addLast(current.venstre);
             }
@@ -320,7 +305,7 @@ public class EksamenSBinTre<T> {
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
         //Kode fra kompendiet, seksjon 5.2.3 c)
         EksamenSBinTre<K> nyttBinærTre = new EksamenSBinTre<>(c);   //komparatoren c
-        data.forEach(nyttBinærTre::leggInn);            //bygger opp treet
-        return nyttBinærTre;        //returnerer det nye treet
+        data.forEach(nyttBinærTre::leggInn);                        //bygger opp treet
+        return nyttBinærTre;                                        //returnerer det nye treet
     }
 } // ObligSBinTre
