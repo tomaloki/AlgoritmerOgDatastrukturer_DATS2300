@@ -165,11 +165,10 @@ public class EksamenSBinTre<T> {
 
 
     public int fjernAlle(T verdi) {
-        //tar i bruk og tester kode som jeg har skrevet i forbindelse med en oppgave i kompendiet
-        //seksjon 5.2.8, oppgave 3
+        //Tar utgangspunkt i oppgave og kildekode til løsningen til oppgave 3 i seksjon 5.2.8 i kompendiet
 
         int verdiAntall = 0;
-        while (inneholder(verdi)) {
+        while (inneholder(verdi)) {     //så lenge verdien finnes
             fjern(verdi);
             verdiAntall++;
         }
@@ -177,20 +176,19 @@ public class EksamenSBinTre<T> {
     }
 
     public int antall(T verdi) {
-        //I denne oppgaven har jeg tatt i bruk løsning på oppgave 2, tilhørende avsnitt
-        //5.2.6 i kompendiet.
+        //Tatt utgangspunkt i kildekode i oppgave og løsning til oppgave 2, seksjon 5.2.6 i kompendiet
 
-        Node<T> current = rot;      //nåværende note er rotnode
-        int antallForekomster = 0;  //tellevariabel for antall ganger verdien blir telt
+        Node<T> current = rot;              //current starter i roten
+        int antallForekomster = 0;
 
         while (current != null) {
             int cmp = comp.compare(verdi, current.verdi);       //sammenligner
             if (cmp < 0)
-                current = current.venstre;
+                current = current.venstre;                      //går til venstre
             else {
                 if (cmp == 0)
                     antallForekomster++;
-                current = current.høyre;
+                current = current.høyre;                       //går til høyre
             }
 
         }
@@ -199,6 +197,8 @@ public class EksamenSBinTre<T> {
     }
 
     public void nullstill() {
+        //Har tatt utgangspunkt i oppgave 8 og løsning herfra fra seksjon 5.1.7 i kompendiet, og arbeidet ut ferdig
+        //kode videre fra dette
         if (!tom()) {                       //så lenge treet ikke er tomt
             int antall = antall();
             if (antall == 1) {              //bare én node (rotnode) eksisterer
@@ -206,16 +206,16 @@ public class EksamenSBinTre<T> {
             } else {
                 Node<T> p = rot;
                 while (p.venstre != null) {
-                    p = p.venstre;
+                    p = p.venstre;              //p lik venstrebarn
                 }
 
-                for (int i = 0; i < antall; i++) {
-                    T verdi = null;
+                for (int i = 0; i < antall; i++) {  //så lenge i er mindre enn antall i treet løper løkken
+                    T verdi = null;                 //hjelpevariabel
                     if (p != null) {
-                        verdi = p.verdi;
-                        p = nestePostorden(p);
+                        verdi = p.verdi;            //kopierer inn p.verdi
+                        p = nestePostorden(p);      //p får ny verdi som er neste postorden
                     }
-                    fjern(verdi);
+                    fjern(verdi);                   //verdi fjernes
                 }
             }
         }
@@ -262,6 +262,7 @@ public class EksamenSBinTre<T> {
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
+        //Lik oppbygning som førstePostorden-metoden, men med rekursivt kall som skriver ut
         if (p.venstre != null) postordenRecursive(p.venstre, oppgave);
         if (p.høyre != null) postordenRecursive(p.høyre, oppgave);
         oppgave.utførOppgave(p.verdi);
@@ -271,7 +272,7 @@ public class EksamenSBinTre<T> {
     public ArrayList<T> serialize() {
         //Deler av koden er hentet fra undervisningsvideo med André, --> "uke 09 level order"
 
-        ArrayList listeMedNoder = new ArrayList<>();
+        ArrayList<T> listeMedNoder = new ArrayList<>();
         ArrayDeque<Node<T>> queue = new ArrayDeque<>();  //brueke deque for å håndtere køen
 
         //legg til rotnoden

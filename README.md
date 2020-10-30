@@ -78,7 +78,7 @@ While-loop som går så lenge _inneholder(verdi)_,da skal verdien fjernes ved hj
 verdiAntall plusses på en. Løkken løper så lenge verdien finnes.
 
 **nullstill**: Har tatt utgangspunkt i og implementert kode fra oppgave og løsning i kompendiet,
-seksjon 5.1.7 oppgave 8 (modifikasjoner har blitt gjort). 
+seksjon 5.1.7 oppgave 8 (modifikasjoner har blitt gjort, samt tillegging av mer kode). 
 Hvis treet ikke er tomt, er antall lik opptelt antall(). Hvis antall er 1, dvs bare rotverdi eksisterer - fjern rot.
 Ellers, node p = rot. Hvis venstrebarn ikke er null, er p lik venstrebarn (finner neste postorden). Går inn i en for-løkke
 som går så lenge i < antall i treet. Hjelpevariabel verdi, som settes lik p.verdi så lenge p ikke er null.
